@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Login</title>
 </head>
 <body>
     <?php include "navbar.html" ?> 
@@ -15,14 +15,13 @@
         $password = $_POST['password'];
     
     $query = "SELECT * FROM user WHERE username = '$username' AND password = '$password'";
-
     $result = mysqli_query($koneksi, $query);
-    }
 
-    if($result->num_rows>0){
+    if(mysqli_num_rows($result) > 0){
         echo "Berhasil Login";
     } else {
         echo "Username/Password Salah";
+    }
     }
     ?>
 

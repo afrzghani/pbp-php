@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Register</title>
 </head>
 <body>
     <?php include "navbar.html" ?> 
@@ -14,9 +14,18 @@
         $username = $_POST['username'];
         $password = $_POST['password'];
     
-    $query = "INSERT INTO user (username, password) VALUES ('$username','$password')";
+    $cekemail = "SELECT * FROM user WHERE username = '$username'";
+    $result = mysqli_query($koneksi, $cekemail);
 
-    mysqli_query($koneksi, $query);
+    if (mysqli_num_rows($result) > 0) {
+        echo "Username sudah digunakan, silakan pilih yang lain.";
+    } else {
+        $insert = "INSERT INTO user (username, password) VALUES ('$username','$password')";
+        $save = mysqli_query($koneksi, $insert);
+        if($save){
+            echo "Berhasil Membuat Akun";
+        }
+    } 
     }
     ?>
 

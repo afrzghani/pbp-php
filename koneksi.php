@@ -2,7 +2,7 @@
         $hostname = "localhost"; 
         $username = "root"; 
         $password = ""; 
-        $database = "pbp-php"; 
+        $database = "pbp_php"; 
         
         $koneksi = mysqli_connect($hostname, $username, $password, $database); 
     ?> 
