@@ -17,7 +17,8 @@
 
     if(isset($_POST['register'])){
         $username = $_POST['username'];
-        $password = $_POST['password'];
+        $password_raw = $_POST['password'];
+        $password = hash('sha256', $password_raw);
     
     $cekemail = "SELECT * FROM user WHERE username = '$username'";
     $result = mysqli_query($koneksi, $cekemail);

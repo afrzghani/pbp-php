@@ -17,7 +17,8 @@
 
     if(isset($_POST['login'])){
         $username = $_POST['username'];
-        $password = $_POST['password'];
+        $password_raw = $_POST['password'];
+        $password = hash('sha256', $password_raw);
     
     $query = "SELECT * FROM user WHERE username = '$username' AND password = '$password'";
     $result = mysqli_query($koneksi, $query);
@@ -25,6 +26,7 @@
     if(mysqli_num_rows($result) > 0){
         echo "Berhasil Login";
         $_SESSION['isLogin'] = true;
+        $_SESSION['username'] = $username;
         header('location:dashboard.php');
     } else {
         echo "Username/Password Salah";
