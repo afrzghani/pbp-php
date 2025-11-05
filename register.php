@@ -10,6 +10,11 @@
     <?php include "koneksi.php" ?>
 
     <?php
+    session_start();
+    if(isset($_SESSION['isLogin'])){
+        header('location:dashboard.php');
+    }
+
     if(isset($_POST['register'])){
         $username = $_POST['username'];
         $password = $_POST['password'];
@@ -28,6 +33,8 @@
     } 
     }
     ?>
+        
+    <h3>Register</h3>
 
     <form action="register.php" method="POST">
         <p>Username: <input type="text" name="username" id=""></p>

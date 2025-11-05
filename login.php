@@ -10,6 +10,11 @@
     <?php include "koneksi.php" ?>
 
     <?php
+    session_start();
+    if(isset($_SESSION['isLogin'])){
+        header('location:dashboard.php');
+    }
+
     if(isset($_POST['login'])){
         $username = $_POST['username'];
         $password = $_POST['password'];
@@ -19,11 +24,15 @@
 
     if(mysqli_num_rows($result) > 0){
         echo "Berhasil Login";
+        $_SESSION['isLogin'] = true;
+        header('location:dashboard.php');
     } else {
         echo "Username/Password Salah";
     }
     }
     ?>
+
+    <h3>Login</h3>
 
     <form action="login.php" method="POST">
         <p>Username: <input type="text" name="username" id=""></p>
